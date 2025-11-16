@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { SwapInterface } from '@/components/SwapInterface';
-import { TradingViewChart } from '@/components/TradingViewChart';
 import { PegasusAnimation } from '@/components/PegasusAnimation';
-import { mapTokenToTradingView, getChartDisplayName } from '@/utils/tokenMapping';
 import { motion } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
 
@@ -33,13 +31,10 @@ const Dex = () => {
     logoURI: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png'
   };
 
-  const [chartSymbol, setChartSymbol] = useState(mapTokenToTradingView('SOL'));
-  const [currentTokenSymbol, setCurrentTokenSymbol] = useState('SOL');
+  const [dexScreenerToken, setDexScreenerToken] = useState('So11111111111111111111111111111111111111112'); // Default SOL
 
   const handleFromTokenChange = (token: Token) => {
-    const tradingViewSymbol = mapTokenToTradingView(token.symbol);
-    setChartSymbol(tradingViewSymbol);
-    setCurrentTokenSymbol(token.symbol);
+    setDexScreenerToken(token.address);
   };
 
   return (
@@ -60,7 +55,7 @@ const Dex = () => {
               <h1 className="text-4xl font-extrabold text-gradient">DEX Trading</h1>
             </div>
             <p className="text-muted-foreground">
-              Trade and analyze {currentTokenSymbol} in real-time
+              Trade and analyze tokens in real-time
             </p>
           </motion.div>
 
@@ -79,7 +74,7 @@ const Dex = () => {
               />
             </motion.div>
 
-            {/* TradingView Chart - Right Side (65%) */}
+            {/* DEXScreener Chart - Right Side (65%) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -88,7 +83,14 @@ const Dex = () => {
             >
               <div className="relative min-h-[500px] lg:min-h-[600px]">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl opacity-20 blur-xl animate-pulse-glow" />
-                <TradingViewChart key={chartSymbol} symbol={chartSymbol} />
+                <div className="relative glass-card rounded-2xl overflow-hidden h-[500px] lg:h-[600px]">
+                  <iframe
+                    key={dexScreenerToken}
+                    src={`https://dexscreener.com/solana/${dexScreenerToken}?embed=1&theme=dark&trades=0&info=0`}
+                    className="w-full h-full border-0"
+                    title="DEXScreener Chart"
+                  />
+                </div>
               </div>
             </motion.div>
           </div>

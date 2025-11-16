@@ -1,7 +1,6 @@
 import { SwapInterface } from '@/components/SwapInterface';
 import { PegasusAnimation } from '@/components/PegasusAnimation';
 import { Navigation } from '@/components/Navigation';
-import { TransactionPreview } from '@/components/TransactionPreview';
 import { motion } from 'framer-motion';
 
 const Index = () => {
@@ -11,11 +10,6 @@ const Index = () => {
       <Navigation />
 
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-8">
-        {/* Transaction Preview */}
-        <div className="flex justify-center items-center mb-8">
-          <TransactionPreview />
-        </div>
-
         {/* Main Swap Interface */}
         <div className="flex justify-center items-center">
           <SwapInterface />
