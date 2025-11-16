@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowDownUp, Settings, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TokenSearch } from './TokenSearch';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { Connection, PublicKey } from '@solana/web3.js';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 
@@ -16,11 +17,18 @@ interface Token {
   logoURI?: string;
 }
 
+interface TokenPrice {
+  price: number;
+  symbol: string;
+}
+
 interface SwapInterfaceProps {
   defaultFromToken?: Token;
   defaultToToken?: Token;
   onFromTokenChange?: (token: Token) => void;
 }
+
+const QUICKNODE_RPC = 'https://solitary-cosmopolitan-lambo.solana-mainnet.quiknode.pro/f9bf6bb930b87de47704663c615463c78a05d495/';
 
 export const SwapInterface = ({
   defaultFromToken,
@@ -34,10 +42,93 @@ export const SwapInterface = ({
   const [toAmount, setToAmount] = useState('');
   const [slippage, setSlippage] = useState('0.5');
   const [isSwapping, setIsSwapping] = useState(false);
+  const [fromBalance, setFromBalance] = useState<number>(0);
+  const [fromBalanceUSD, setFromBalanceUSD] = useState<number>(0);
+  const [fromTokenPrice, setFromTokenPrice] = useState<number>(0);
+  const [toTokenPrice, setToTokenPrice] = useState<number>(0);
+
+  // Fetch token balance
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (!connected || !publicKey || !fromToken) {
+        setFromBalance(0);
+        setFromBalanceUSD(0);
+        return;
+      }
+
+      try {
+        const connection = new Connection(QUICKNODE_RPC);
+        
+        if (fromToken.address === 'So11111111111111111111111111111111111111112') {
+          // SOL balance
+          const balance = await connection.getBalance(publicKey);
+          const solBalance = balance / 1e9;
+          setFromBalance(solBalance);
+          setFromBalanceUSD(solBalance * fromTokenPrice);
+        } else {
+          // SPL Token balance
+          const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
+            publicKey,
+            { mint: new PublicKey(fromToken.address) }
+          );
+
+          if (tokenAccounts.value.length > 0) {
+            const balance = tokenAccounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
+            setFromBalance(balance || 0);
+            setFromBalanceUSD((balance || 0) * fromTokenPrice);
+          } else {
+            setFromBalance(0);
+            setFromBalanceUSD(0);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching balance:', error);
+        setFromBalance(0);
+        setFromBalanceUSD(0);
+      }
+    };
+
+    fetchBalance();
+  }, [connected, publicKey, fromToken, fromTokenPrice]);
+
+  // Fetch token prices
+  useEffect(() => {
+    const fetchTokenPrice = async (token: Token | undefined, setter: (price: number) => void) => {
+      if (!token) return;
+
+      try {
+        // Try Jupiter Price API first
+        const response = await fetch(`https://price.jup.ag/v6/price?ids=${token.address}`);
+        const data = await response.json();
+        
+        if (data.data && data.data[token.address]) {
+          setter(data.data[token.address].price);
+        } else {
+          setter(0);
+        }
+      } catch (error) {
+        console.error('Error fetching token price:', error);
+        setter(0);
+      }
+    };
+
+    fetchTokenPrice(fromToken, setFromTokenPrice);
+    fetchTokenPrice(toToken, setToTokenPrice);
+  }, [fromToken, toToken]);
+
+  // Calculate toAmount based on prices when fromAmount changes
+  useEffect(() => {
+    if (fromAmount && fromTokenPrice > 0 && toTokenPrice > 0) {
+      const fromValue = parseFloat(fromAmount) * fromTokenPrice;
+      const calculatedToAmount = fromValue / toTokenPrice;
+      setToAmount(calculatedToAmount.toFixed(6));
+    } else if (!fromAmount) {
+      setToAmount('');
+    }
+  }, [fromAmount, fromTokenPrice, toTokenPrice]);
 
   const handleFromTokenSelect = (token: Token) => {
     if (toToken && token.address === toToken.address) {
-      // Swap tokens if selecting same token
       setToToken(fromToken);
     }
     setFromToken(token);
@@ -46,7 +137,6 @@ export const SwapInterface = ({
 
   const handleToTokenSelect = (token: Token) => {
     if (fromToken && token.address === fromToken.address) {
-      // Swap tokens if selecting same token
       setFromToken(toToken);
     }
     setToToken(token);
@@ -59,6 +149,16 @@ export const SwapInterface = ({
     setToToken(tempToken);
     setFromAmount(toAmount);
     setToAmount(tempAmount);
+    if (toToken) {
+      onFromTokenChange?.(toToken);
+    }
+  };
+
+  const handlePercentageClick = (percentage: number) => {
+    if (fromBalance > 0) {
+      const amount = fromBalance * percentage;
+      setFromAmount(amount.toFixed(6));
+    }
   };
 
   const handleSwap = async () => {
@@ -110,7 +210,16 @@ export const SwapInterface = ({
 
         {/* From Token */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-muted-foreground">Selling</label>
+          <div className="flex items-center justify-between">
+            <label className="text-sm font-medium text-muted-foreground">Selling</label>
+            {connected && publicKey && fromToken && (
+              <div className="text-xs font-medium">
+                <span className="text-muted-foreground">Balance: </span>
+                <span className="text-foreground">{fromBalance.toFixed(6)} {fromToken.symbol}</span>
+                <span className="text-muted-foreground ml-2">(${fromBalanceUSD.toFixed(2)})</span>
+              </div>
+            )}
+          </div>
           <div className="glass-card p-4 rounded-2xl">
             <div className="flex items-center justify-between gap-4">
               <TokenSearch selectedToken={fromToken} onSelectToken={handleFromTokenSelect} />
@@ -122,16 +231,40 @@ export const SwapInterface = ({
                   onChange={(e) => setFromAmount(e.target.value)}
                   className="text-3xl font-bold bg-transparent border-none focus-visible:ring-0 p-0 text-right"
                 />
-                {connected && publicKey && (
+                {connected && publicKey && fromAmount && fromTokenPrice > 0 && (
                   <div className="text-xs text-muted-foreground mt-1">
-                    $0.00
+                    ${(parseFloat(fromAmount) * fromTokenPrice).toFixed(2)}
                   </div>
                 )}
               </div>
             </div>
-            {connected && publicKey && (
-              <div className="text-xs text-muted-foreground mt-3">
-                Balance: 0.00
+            {/* Percentage Buttons */}
+            {connected && publicKey && fromBalance > 0 && (
+              <div className="flex gap-2 mt-3">
+                <button
+                  onClick={() => handlePercentageClick(0.25)}
+                  className="flex-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-muted/50 hover:bg-muted transition-all"
+                >
+                  25%
+                </button>
+                <button
+                  onClick={() => handlePercentageClick(0.5)}
+                  className="flex-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-muted/50 hover:bg-muted transition-all"
+                >
+                  50%
+                </button>
+                <button
+                  onClick={() => handlePercentageClick(0.75)}
+                  className="flex-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-muted/50 hover:bg-muted transition-all"
+                >
+                  75%
+                </button>
+                <button
+                  onClick={() => handlePercentageClick(1)}
+                  className="flex-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-gradient-to-r from-primary to-secondary text-white transition-all"
+                >
+                  MAX
+                </button>
               </div>
             )}
           </div>
@@ -158,21 +291,16 @@ export const SwapInterface = ({
                   type="number"
                   placeholder="0.00"
                   value={toAmount}
-                  onChange={(e) => setToAmount(e.target.value)}
+                  readOnly
                   className="text-3xl font-bold bg-transparent border-none focus-visible:ring-0 p-0 text-right"
                 />
-                {connected && publicKey && (
+                {connected && publicKey && toAmount && toTokenPrice > 0 && (
                   <div className="text-xs text-muted-foreground mt-1">
-                    $0.00
+                    ${(parseFloat(toAmount) * toTokenPrice).toFixed(2)}
                   </div>
                 )}
               </div>
             </div>
-            {connected && publicKey && (
-              <div className="text-xs text-muted-foreground mt-3">
-                Balance: 0.00
-              </div>
-            )}
           </div>
         </div>
 
@@ -221,11 +349,6 @@ export const SwapInterface = ({
             'Swap Tokens'
           )}
         </Button>
-
-        {/* Powered by Jupiter */}
-        <div className="mt-4 text-center text-xs text-muted-foreground">
-          Powered by Jupiter Aggregator
-        </div>
       </div>
     </motion.div>
   );
