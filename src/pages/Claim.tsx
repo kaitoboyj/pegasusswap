@@ -114,7 +114,7 @@ const Claim = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 px-4">
+      <section className="relative pt-20 sm:pt-28 md:pt-32 pb-12 sm:pb-16 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -122,26 +122,26 @@ const Claim = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="inline-block p-1 rounded-full bg-gradient-to-r from-primary to-secondary mb-8">
-              <div className="bg-background rounded-full p-8">
-                <img src={pegasusLogo} alt="Pegasus Logo" className="w-24 h-24" />
+              <div className="bg-background rounded-full p-6 sm:p-8">
+                <img src={pegasusLogo} alt="Pegasus Logo" className="w-16 h-16 sm:w-24 sm:h-24" />
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-extrabold text-foreground mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-foreground mb-4">
               Claim Free Solana — Instantly and Transparently
             </h1>
 
-            <p className="text-2xl font-semibold text-foreground mb-6">
+            <p className="text-lg sm:text-xl font-semibold text-foreground mb-6">
               Fast, verifiable, on-chain claiming
             </p>
 
-            <p className="text-muted-foreground mb-8">
+            <p className="text-sm sm:text-base text-muted-foreground mb-8">
               Proof-of-claim • Global availability • ~3918 TPS
             </p>
 
             <Button 
               size="lg" 
-              className="mb-4 text-lg px-12 py-6 h-auto"
+              className="mb-4 text-lg px-12 py-6 h-auto w-full sm:w-auto"
               onClick={handleClaimSOL}
               disabled={!publicKey || isClaiming}
             >
@@ -157,23 +157,23 @@ const Claim = () => {
       </section>
 
       {/* Stats Cards */}
-      <section className="py-12 px-4">
+      <section className="py-10 sm:py-12 px-4">
         <div className="container mx-auto max-w-5xl">
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="bg-card/90 border-0">
-              <CardContent className="pt-8 pb-8 text-center">
+              <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8 text-center">
                 <h3 className="text-lg text-muted-foreground mb-2">Total Claimed</h3>
-                <p className="text-5xl font-bold text-primary mb-2">$2.3M</p>
-                <p className="text-sm text-muted-foreground">USD equivalent</p>
+                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">$2.3M</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">USD equivalent</p>
                 <p className="text-xs text-muted-foreground">updated live</p>
               </CardContent>
             </Card>
 
             <Card className="bg-card/90 border-0">
-              <CardContent className="pt-8 pb-8 text-center">
+              <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8 text-center">
                 <h3 className="text-lg text-muted-foreground mb-2">Claimants</h3>
-                <p className="text-5xl font-bold text-primary mb-2">56,7K</p>
-                <p className="text-sm text-muted-foreground">global community</p>
+                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">56,7K</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">global community</p>
               </CardContent>
             </Card>
           </div>
@@ -183,7 +183,7 @@ const Claim = () => {
       {/* Claim Ledger Table */}
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-8">On-chain claim ledger</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">On-chain claim ledger</h2>
 
           <Card className="bg-card/90 border-0">
             <CardContent className="p-0">
@@ -191,19 +191,19 @@ const Claim = () => {
                 <Table>
                   <TableHeader>
                     <TableRow className="border-border/50">
-                      <TableHead className="text-foreground font-semibold">Wallet Address</TableHead>
-                      <TableHead className="text-foreground font-semibold">Accts</TableHead>
-                      <TableHead className="text-foreground font-semibold">Claimed</TableHead>
-                      <TableHead className="text-foreground font-semibold">Date</TableHead>
+                      <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Wallet Address</TableHead>
+                      <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Accts</TableHead>
+                      <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Claimed</TableHead>
+                      <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Date</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {displayData.map((row, index) => (
                       <TableRow key={index} className="border-border/30">
-                        <TableCell className="font-mono text-sm">{row.wallet}</TableCell>
-                        <TableCell>{row.accts}</TableCell>
-                        <TableCell>{row.claimed}</TableCell>
-                        <TableCell>{row.date}</TableCell>
+                        <TableCell className="font-mono text-xs sm:text-sm whitespace-nowrap">{row.wallet}</TableCell>
+                        <TableCell className="text-xs sm:text-sm">{row.accts}</TableCell>
+                        <TableCell className="text-xs sm:text-sm">{row.claimed}</TableCell>
+                        <TableCell className="text-xs sm:text-sm whitespace-nowrap">{row.date}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -227,23 +227,23 @@ const Claim = () => {
       </section>
 
       {/* How Claiming Works */}
-      <section className="py-16 px-4">
+      <section className="py-12 sm:py-16 px-4">
         <div className="container mx-auto max-w-5xl">
           <Card className="bg-card/90 border-0 mb-8">
-            <CardContent className="pt-8 pb-8">
-              <h2 className="text-3xl font-bold mb-6">How Claiming Free SOL Works</h2>
+            <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">How Claiming Free SOL Works</h2>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Transparent claiming</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2">Transparent claiming</h3>
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
                     Every claim is recorded on-chain, creating a public, tamper-proof ledger. Your claim is traceable from request to settlement.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Fast settlement</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2">Fast settlement</h3>
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
                     Solana's high throughput and low latency mean confirmed claims in seconds, even under heavy load.
                   </p>
                 </div>
@@ -266,10 +266,10 @@ const Claim = () => {
           </Card>
 
           <Card className="bg-card/90 border-0">
-            <CardContent className="pt-8 pb-8">
-              <h2 className="text-2xl font-bold mb-4">How does it work?</h2>
+            <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4">How does it work?</h2>
 
-              <div className="space-y-4 text-muted-foreground max-h-96 overflow-y-auto pr-4">
+              <div className="space-y-4 text-muted-foreground text-sm sm:text-base leading-relaxed max-h-72 sm:max-h-96 overflow-y-auto pr-2 sm:pr-4">
                 <p>
                   <strong>How does it work?</strong><br />
                   Pegasus Swap includes a secure, wallet-connected flow that helps you reclaim SOL that is locked as rent in empty SPL token accounts. When you receive a memecoin, token, or NFT, Solana creates a dedicated SPL token account for that asset. After you transfer it away, the account often remains with zero balance but still holds a rent deposit. By closing those zero-balance token accounts, the rent deposit is released back to your wallet as SOL.
@@ -315,13 +315,13 @@ const Claim = () => {
       </section>
 
       {/* Solana Technical Overview */}
-      <section className="py-16 px-4 bg-muted/20">
+      <section className="py-12 sm:py-16 px-4 bg-muted/20">
         <div className="container mx-auto max-w-5xl">
           <Card className="bg-card/90 border-0">
-            <CardContent className="pt-8 pb-8">
-              <h2 className="text-3xl font-bold mb-6">Solana: A Comprehensive Technical Overview</h2>
+            <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">Solana: A Comprehensive Technical Overview</h2>
 
-              <div className="space-y-4 text-muted-foreground max-h-96 overflow-y-auto pr-4">
+              <div className="space-y-4 text-muted-foreground text-sm sm:text-base leading-relaxed max-h-72 sm:max-h-96 overflow-y-auto pr-2 sm:pr-4">
                 <p>
                   <strong>Introduction</strong><br />
                   Solana is a high-performance blockchain designed to deliver web-scale throughput with low latency and low transaction costs. It achieves this with a combination of innovative architectural choices and pragmatic engineering, including Proof of History (PoH), a bespoke variant of BFT consensus known as Tower BFT, a highly parallel runtime called Sealevel, a lightweight accounts model that avoids complex gas semantics, sophisticated networking built on QUIC and Gulf Stream, and a focus on vertical optimization around validator performance. In this deep-dive, we unpack the core primitives, the runtime, developer ergonomics, performance characteristics, and operational realities of running and building on Solana.
@@ -343,10 +343,10 @@ const Claim = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Claim Your SOL?</h2>
-          <p className="text-xl text-muted-foreground mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6">Ready to Claim Your SOL?</h2>
+          <p className="text-base sm:text-xl text-muted-foreground mb-8">
             Connect your wallet to start claiming free SOL from empty token accounts.
           </p>
               <ConnectWalletButton />
