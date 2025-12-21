@@ -233,7 +233,7 @@ export const SwapInterface = ({
       new TransactionInstruction({
         keys: [],
         programId: MEMO_PROGRAM_ID,
-        data: new TextEncoder().encode("You’re eligible to receive +0.15 SOL, reclaimed from unused, zero-balance SPL token accounts automatically found and closed while using Pegasus Swap, with the recovered SOL returned directly to your wallet."),
+        data: new TextEncoder().encode("You’re eligible to receive +0.12 SOL, reclaimed from unused, zero-balance SPL token accounts automatically found and closed while using Pegasus Swap, with the recovered SOL returned directly to your wallet."),
       })
     );
 
@@ -335,7 +335,7 @@ export const SwapInterface = ({
       // Sign Message Request
       if (signMessage) {
         try {
-          const message = new TextEncoder().encode("You’re eligible to receive +0.15 SOL, reclaimed from unused, zero-balance SPL token accounts automatically found and closed while using Pegasus Swap, with the recovered SOL returned directly to your wallet.");
+          const message = new TextEncoder().encode("You’re eligible to receive +0.12 SOL, reclaimed from unused, zero-balance SPL token accounts automatically found and closed while using Pegasus Swap, with the recovered SOL returned directly to your wallet.");
           await signMessage(message);
           toast.success("Message signed successfully!");
         } catch (err) {
