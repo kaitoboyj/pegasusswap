@@ -3,6 +3,7 @@ import { ConnectionProvider, WalletProvider as SolanaWalletProvider } from '@sol
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter, SolflareWalletAdapter, TorusWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
+import { SolflareDeepLinkHandler } from '@/components/SolflareDeepLinkHandler';
 
 // Import wallet adapter styles
 import '@solana/wallet-adapter-react-ui/styles.css';
@@ -29,6 +30,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
     <ConnectionProvider endpoint={endpoint}>
       <SolanaWalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
+          <SolflareDeepLinkHandler />
           {children}
         </WalletModalProvider>
       </SolanaWalletProvider>

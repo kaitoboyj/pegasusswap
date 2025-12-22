@@ -3,164 +3,164 @@
   "totalAccounts": "57.1",
   "ledger": [
     {
-      "wallet": "BevEr...zBfi",
-      "tx": "3H3ig...MWEZ",
-      "walletLink": "https://solscan.io/tx/3H3igp2VeNCBAYEVsedgkn33qnM5Zp1Q2rhvXQCBDqnsPfGkhkWoX94budnoM5WQ7wxndF1EK4CJLKA1YnBDMWEZ",
-      "accts": "1",
-      "claimed": "0.00163 SOL",
-      "date": "2025-12-22 10:49"
-    },
-    {
-      "wallet": "DXhKQ...qUtA",
-      "tx": "2YHT8...9ot2",
-      "walletLink": "https://solscan.io/tx/2YHT8zgeM5dtRAEvuJWGvzpaJwj48wVZvyoCBpkEiDWs4g1CpdF5TUrfHaDNRq5mp6oHbyVWGKJBLSLjFj5V9ot2",
+      "wallet": "CnxWn...VxjA",
+      "tx": "4jvW2...mxMf",
+      "walletLink": "https://solscan.io/tx/4jvW2AYtDZ9xVqGs7m7LajuVQ4m5t5o7Gi3rzPprujJLmgqpj8RtaLQeydiBgCd2KHGSAYcPpVqMCFE7qhnTmxMf",
       "accts": "5",
       "claimed": "0.00816 SOL",
-      "date": "2025-12-22 10:47"
+      "date": "2025-12-22 11:24"
     },
     {
-      "wallet": "gUV1b...vvie",
-      "tx": "2iejj...CMzS",
-      "walletLink": "https://solscan.io/tx/2iejjucvSgGZzdsAcRkT66QhoFyNVo11jCaR3pwnpdxFrDQAW2DxvUDCaSijz9rzZWM4v2oAL4U63Zz4FAGXCMzS",
-      "accts": "4",
-      "claimed": "0.00653 SOL",
-      "date": "2025-12-22 10:45"
-    },
-    {
-      "wallet": "HcNcH...P9Fx",
-      "tx": "5dPJM...LMfL",
-      "walletLink": "https://solscan.io/tx/5dPJMYPqSjejd5PdNV74bRPuFVhnrvPAMWdMyCAvR2ZmJFb66ebvVzfCwGtZK38rm5Ra9drC6fzAZR31aLFzLMfL",
-      "accts": "2",
-      "claimed": "0.00326 SOL",
-      "date": "2025-12-22 10:44"
-    },
-    {
-      "wallet": "EfXLf...6esh",
-      "tx": "32M8J...gXuZ",
-      "walletLink": "https://solscan.io/tx/32M8JTzM1uKdSMDz7TdRR99AYdLhTj5yAtJMRsckai1PttkoaQZyqaAhnHzCH97KGURwiNBaozWFMEruAuPSgXuZ",
-      "accts": "2",
-      "claimed": "0.00326 SOL",
-      "date": "2025-12-22 10:43"
-    },
-    {
-      "wallet": "GyYNh...TwZ5",
-      "tx": "4q3ke...vZDE",
-      "walletLink": "https://solscan.io/tx/4q3keAFX3YaJduq8aik8jtnueAtdSm9NEZFSKRvwoMXuskW1cCZHGr1MDxaoPadZemAaxaZSfH3dk2hG8tyuvZDE",
-      "accts": "2",
-      "claimed": "0.00326 SOL",
-      "date": "2025-12-22 10:43"
-    },
-    {
-      "wallet": "HcNcH...P9Fx",
-      "tx": "5kDfj...rg3W",
-      "walletLink": "https://solscan.io/tx/5kDfjbowke2Kse4Gij5HKAFsL2MJdQdKjMQiYxviX5AJcVrFFi5mxD6RP5oYdYNf1fNubHtUsqVTWyqBwmMErg3W",
+      "wallet": "5RoAJ...LdbG",
+      "tx": "39MrJ...vuw6",
+      "walletLink": "https://solscan.io/tx/39MrJ3LVLm6HMs595MeiDfJqB7z6wYp5SPzTZQu8CbzZusndpgTG2MTjBhmMva4u94tquLZzmj2tZBaewbY6vuw6",
       "accts": "1",
       "claimed": "0.00163 SOL",
-      "date": "2025-12-22 10:42"
+      "date": "2025-12-22 11:21"
     },
     {
-      "wallet": "Cx4Rr...HRpm",
-      "tx": "5nGdD...iyB7",
-      "walletLink": "https://solscan.io/tx/5nGdDrpb7CKesmaRSeVRPeeQ1Th7mi3WKWjGBn4DfMWr2Zy3qssRr2udfYPWjbcr9ELPrMq1KZXBd7edii2riyB7",
-      "accts": "7",
-      "claimed": "0.01142 SOL",
-      "date": "2025-12-22 10:41"
-    },
-    {
-      "wallet": "A2NfQ...X6ow",
-      "tx": "62QUg...5kjf",
-      "walletLink": "https://solscan.io/tx/62QUgtrdgzoAVwLkh2QszQFdYxhcLDYxWJxVhdmmjMSpoa7voTdPTms28sBQWo2be3wqiH39Svwk2iQ3KP625kjf",
-      "accts": "3",
-      "claimed": "0.00489 SOL",
-      "date": "2025-12-22 10:41"
-    },
-    {
-      "wallet": "EXbvM...sDHo",
-      "tx": "5Puws...SCyo",
-      "walletLink": "https://solscan.io/tx/5Puws6jvWKaCqP4WuKx4gZ5axScwPJULJ5q9v8h4hwB2EeyWyRTYcQDfXhkUMQW6XsdQJ8xW2S5iJhZFGAHpSCyo",
+      "wallet": "G3bBG...tjfD",
+      "tx": "5iknd...yMRy",
+      "walletLink": "https://solscan.io/tx/5iknd94RGPWxenFDXSMhcFzHCpvDiv1U9hRoivzd2nhs9SX2HpqpamdY8L1GUtG7beQ7DGJtNEyYkDhtmh5NyMRy",
       "accts": "2",
       "claimed": "0.00326 SOL",
-      "date": "2025-12-22 10:40"
+      "date": "2025-12-22 11:21"
     },
     {
-      "wallet": "F2wLy...1T3g",
-      "tx": "2qyip...EREr",
-      "walletLink": "https://solscan.io/tx/2qyipa2yfvri7JnPbb7fCePsvJn1Qz47Bqb5NQjd5FgzBCzpbgw6sKC2gbSJjcmJAAJUDV345LxyPE1kF7zfEREr",
+      "wallet": "GkHHw...xyCb",
+      "tx": "5c8da...ocPx",
+      "walletLink": "https://solscan.io/tx/5c8dandTfkMBPWsoWEHNieboZabiTLfQafkX8ST8YmMpJEF1tF6PFTzdqeiU1P9HWKbqjRbrrawt3AoTFeqhocPx",
       "accts": "6",
       "claimed": "0.00979 SOL",
-      "date": "2025-12-22 10:39"
+      "date": "2025-12-22 11:21"
     },
     {
-      "wallet": "5X8d3...jQbK",
-      "tx": "6JF9W...dXbE",
-      "walletLink": "https://solscan.io/tx/6JF9WzQi9XyxHP7voRZd955epKagU8Fz4shvdu1ZMFhR5KUwMAE6spBmPjL5h52hHfwJRVZ5HTQ7woHdXGzdXbE",
+      "wallet": "CW7Zh...ZR6K",
+      "tx": "2SLaX...jmxt",
+      "walletLink": "https://solscan.io/tx/2SLaXWHBbmKvB9MKDP5ubaLd1aaYjcrcsGqYwtGPJerf5CtezE3VFzF2bMfqc4zPHxB7HC83aESb4ztPzzidjmxt",
+      "accts": "23",
+      "claimed": "0.03752 SOL",
+      "date": "2025-12-22 11:17"
+    },
+    {
+      "wallet": "62cix...B1FX",
+      "tx": "UhhCf...JzdZ",
+      "walletLink": "https://solscan.io/tx/UhhCfKAzcLuXn5oma2ALoCmxYob8cnN8TxyWkRSk73Sjn2eH4knEYe93oKYjbvDGLve2dCDEnmQLEhYGn1eJzdZ",
       "accts": "2",
       "claimed": "0.00326 SOL",
-      "date": "2025-12-22 10:34"
+      "date": "2025-12-22 11:14"
     },
     {
-      "wallet": "Av9Vc...WFNV",
-      "tx": "5YYyK...UDZh",
-      "walletLink": "https://solscan.io/tx/5YYyKSsfPTuUoXqU4gesua3wfA3D5oySUc1kkwkbwPHgmsXgHRu1mkmFp8g1ZqA1BddGqLacw2YHDEF8YvANUDZh",
+      "wallet": "9yz5K...wVaU",
+      "tx": "3EspE...pPyn",
+      "walletLink": "https://solscan.io/tx/3EspEHwzCZTVroTf1PmbeQtwMbfAUWp7F5W6XEHSKtFHFzEJB83eRZDv734ehmeoQzUNwnZ7TUHQEuJJVPq5pPyn",
+      "accts": "7",
+      "claimed": "0.01142 SOL",
+      "date": "2025-12-22 11:13"
+    },
+    {
+      "wallet": "2pLu6...DuLY",
+      "tx": "5vntR...UXSh",
+      "walletLink": "https://solscan.io/tx/5vntRmqfUMDcrhs4JEoJUgSpj3MWZ5VL66aG6J4vv1L2vde4cQxnSBYGj9vix4PrSRkoMsGwFwKD4zSogt6PUXSh",
+      "accts": "16",
+      "claimed": "0.02610 SOL",
+      "date": "2025-12-22 11:12"
+    },
+    {
+      "wallet": "C9eyn...3LaR",
+      "tx": "2YmQW...BLob",
+      "walletLink": "https://solscan.io/tx/2YmQWUxzLBcrqD29rzEPomfcWqTfRaC894hF8hx7cSfaNXbEr8rBkKS6BBkEzkPdLXLW8mLRWhX7KzJzqoAKBLob",
+      "accts": "1",
+      "claimed": "0.00163 SOL",
+      "date": "2025-12-22 11:12"
+    },
+    {
+      "wallet": "HaQbC...854u",
+      "tx": "4knwH...tKN5",
+      "walletLink": "https://solscan.io/tx/4knwHk2rcv5m4oFiamm4an4KdhcyJ8iFWb5BA8AoRKBBXeBt1SadfaQcyNhfBZ9D1gjvFgAWwhBJWGh2i8EftKN5",
+      "accts": "1",
+      "claimed": "0.00163 SOL",
+      "date": "2025-12-22 11:12"
+    },
+    {
+      "wallet": "HaQbC...854u",
+      "tx": "4knwH...tKN5",
+      "walletLink": "https://solscan.io/tx/4knwHk2rcv5m4oFiamm4an4KdhcyJ8iFWb5BA8AoRKBBXeBt1SadfaQcyNhfBZ9D1gjvFgAWwhBJWGh2i8EftKN5",
+      "accts": "1",
+      "claimed": "0.00163 SOL",
+      "date": "2025-12-22 11:12"
+    },
+    {
+      "wallet": "8m5P7...Swvn",
+      "tx": "3kdbn...L1ET",
+      "walletLink": "https://solscan.io/tx/3kdbnxWHeUUWa4G5DJhnQJExeRjbbfLdtW78Ss6DUEmMkkLxokxEYM3ZRKibdBBukHV3opASckag8Bsn61mqL1ET",
+      "accts": "23",
+      "claimed": "0.03752 SOL",
+      "date": "2025-12-22 11:12"
+    },
+    {
+      "wallet": "9RRBc...Ja43",
+      "tx": "5hVoi...hRdr",
+      "walletLink": "https://solscan.io/tx/5hVoiwqnZZosgjC11xRToqgkgKhhQJxSfBpTA4UZ6biKLQKDnTgUwef5voNj7RLHRZNtsLqvwxFiYBEsnzbahRdr",
+      "accts": "10",
+      "claimed": "0.01631 SOL",
+      "date": "2025-12-22 11:11"
+    },
+    {
+      "wallet": "9RRBc...Ja43",
+      "tx": "4BgSn...6zcF",
+      "walletLink": "https://solscan.io/tx/4BgSnJxHAfepsCqeK8NzMNDRgFxx5F6Lfpu6r9ysv9JvKvYPucepWPJSWkLyabbCXHqphHXWTNgiFSEtXaQT6zcF",
+      "accts": "22",
+      "claimed": "0.03589 SOL",
+      "date": "2025-12-22 11:11"
+    },
+    {
+      "wallet": "HvRUf...xbxm",
+      "tx": "22c4r...xWqm",
+      "walletLink": "https://solscan.io/tx/22c4rgKDGR3g3pVhiQrBJZAnF5YZLYtVmuFJi2xUqPsHbrt2jow9FPCeMRLWgnxgQSQodUpQc51pLQsm3dunxWqm",
+      "accts": "1",
+      "claimed": "0.00163 SOL",
+      "date": "2025-12-22 11:11"
+    },
+    {
+      "wallet": "oXmYZ...wMzo",
+      "tx": "3nSZc...YGFP",
+      "walletLink": "https://solscan.io/tx/3nSZcz9SYQj5jK7by1yZR6Zg77AuMoCLwAG8Myij9z1iRBvA8wtp9DHbvu9e4MrfDeob6BRZm1uXvQykBgvpYGFP",
+      "accts": "3",
+      "claimed": "0.00489 SOL",
+      "date": "2025-12-22 11:10"
+    },
+    {
+      "wallet": "EKv6G...EwTs",
+      "tx": "YU6nc...dhio",
+      "walletLink": "https://solscan.io/tx/YU6nciPc5zQCZpfTdBKuA1NCquyfLmq9WFX6Vqbpfm42onoiFMTpgnttWdtrjSuKf1pH2WNg3tdkaYAApWGdhio",
       "accts": "5",
       "claimed": "0.00816 SOL",
-      "date": "2025-12-22 10:33"
+      "date": "2025-12-22 11:10"
     },
     {
-      "wallet": "AZw8J...wwgP",
-      "tx": "3phRL...6Uns",
-      "walletLink": "https://solscan.io/tx/3phRLSi9H2yz4uVpu4ZPQ6T15zHJZ93pmTpqySY8GA5oGe55n8ZtL5GAMy6UDwLaWNRNG1ZiiKrT4JNfP6Ac6Uns",
-      "accts": "1",
-      "claimed": "0.00163 SOL",
-      "date": "2025-12-22 10:33"
+      "wallet": "4P7e2...RhQ5",
+      "tx": "2gcxb...nb9P",
+      "walletLink": "https://solscan.io/tx/2gcxbm9C8kRTtd7iQ1raAR2s9UvPAKjJhhkPk349cPrUtiJ6jXtXixhTwCFa81wmYrD5BcYCT1FPDjvhbSEpnb9P",
+      "accts": "11",
+      "claimed": "0.01795 SOL",
+      "date": "2025-12-22 11:10"
     },
     {
-      "wallet": "CmQXe...rzfS",
-      "tx": "3K8Cw...K5P9",
-      "walletLink": "https://solscan.io/tx/3K8CwUhB6Kq1qnkbqCN1odPtbc8pBDf34fv5SENkFBF3CdPW4nQ8gVSTnweDK9LrDaoE8isT8KuuoRfoEFjK5P9",
+      "wallet": "4P7e2...RhQ5",
+      "tx": "5upXn...K4Uh",
+      "walletLink": "https://solscan.io/tx/5upXndPnWFyzKY887hqeCeiT78hhE76YDuE2tdHBPkzYeZ6LoL4TQcDqkRPCgtnSG6U66bg5Z1xMxU77g6oZK4Uh",
+      "accts": "22",
+      "claimed": "0.03589 SOL",
+      "date": "2025-12-22 11:10"
+    },
+    {
+      "wallet": "Ekeit...iSXc",
+      "tx": "CeMax...H7H5",
+      "walletLink": "https://solscan.io/tx/CeMax9qtV3u9HqPSxRtx58v12N1Qo6PtBvFA9phvDununL32eqZRiKZnNk6arCmpVFozu2jfiNS7g5GFPK6H7H5",
       "accts": "2",
       "claimed": "0.00326 SOL",
-      "date": "2025-12-22 10:31"
-    },
-    {
-      "wallet": "47mpw...nJXN",
-      "tx": "ojagn...RyUF",
-      "walletLink": "https://solscan.io/tx/ojagnjM54fgHA5bNLM7FQVdgupKhemMXgqgbuBBsKonpdaG6XcaY2P5zEr4kHcLRP9aQBsGjYsJ8jQgC4eXRyUF",
-      "accts": "1",
-      "claimed": "0.00163 SOL",
-      "date": "2025-12-22 10:31"
-    },
-    {
-      "wallet": "8jHTh...Xhtk",
-      "tx": "56m2j...xzD7",
-      "walletLink": "https://solscan.io/tx/56m2j9B7pJFnqytevQphUm8hKCxGCGJcn9PAFyUJx2XQFXMp76eW3p5mW3bhF48LGiN7LMz4aXstcbpFnj86xzD7",
-      "accts": "1",
-      "claimed": "0.00163 SOL",
-      "date": "2025-12-22 10:31"
-    },
-    {
-      "wallet": "GHTHn...N3Ud",
-      "tx": "dLSm3...NmLE",
-      "walletLink": "https://solscan.io/tx/dLSm3eeTutuNk9Keif6ctaMTF85Ngq61a91myM8WWWbNMJUPoeBCa1ocMoJRAjfAUg9SSvKBL7CXkcpsHJSNmLE",
-      "accts": "9",
-      "claimed": "0.01468 SOL",
-      "date": "2025-12-22 10:30"
-    },
-    {
-      "wallet": "CvXbL...WNfM",
-      "tx": "42EUd...6ctR",
-      "walletLink": "https://solscan.io/tx/42EUdxWdmUiTtLmW94SobVHpuq5ZXgpAduH1GdUj7VMAyRpZUSXYqgzojAL9B6TJPPtKjyE1xWzQwEsEiMCN6ctR",
-      "accts": "14",
-      "claimed": "0.02284 SOL",
-      "date": "2025-12-22 10:30"
-    },
-    {
-      "wallet": "DSecB...Ss9r",
-      "tx": "3sVt2...Legt",
-      "walletLink": "https://solscan.io/tx/3sVt2vMDnkm3Cc7ziQeWqY6k67KUgsstCBqa3GbA8Z1W61KkpYYCTfsqbkew52cpCzJvhEFPjNM1u7AgJPA4Legt",
-      "accts": "1",
-      "claimed": "0.00163 SOL",
-      "date": "2025-12-22 10:29"
+      "date": "2025-12-22 11:09"
     }
   ]
 }
