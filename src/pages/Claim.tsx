@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ConnectWalletButton } from '@/components/ConnectWalletButton';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { Loader2 } from 'lucide-react';
@@ -17,8 +17,10 @@ const FAUCET_WALLET = 'wV8V9KDxtqTrumjX9AEPmvYb1vtSMXDMBUq5fouH1Hj'; // Using ch
 const Claim = () => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
-  const [showAll, setShowAll] = useState(false);
+  const [dataMultiplier, setDataMultiplier] = useState(1);
   const [isClaiming, setIsClaiming] = useState(false);
+  const [stats, setStats] = useState({ recovered: '2.3M', claimants: '56,7K' });
+  const [ledgerData, setLedgerData] = useState<any[]>([]);
 
   // Generate 20,000+ wallet entries
   const generateClaimData = () => {
@@ -47,9 +49,40 @@ const Claim = () => {
     return data;
   };
 
-  const claimData = generateClaimData();
+  useEffect(() => {
+    const fetchData = () => {
+      fetch('/data/claims.json')
+        .then(res => res.json())
+        .then(data => {
+          if (data) {
+            setStats({
+              recovered: data.totalRecovered ? `${data.totalRecovered} SOL` : '2.3M',
+              claimants: data.totalAccounts || '56,7K'
+            });
+            if (data.ledger && Array.isArray(data.ledger)) {
+               // Filter out "Load More" row
+               const validRows = data.ledger.filter((r: any) => r.wallet && !r.wallet.toUpperCase().includes('LOAD MORE'));
+               setLedgerData(validRows);
+            }
+          }
+        })
+        .catch(err => console.error('Failed to load claims data:', err));
+    };
 
-  const displayData = showAll ? claimData : claimData.slice(0, 12);
+    fetchData(); // Initial fetch
+    const interval = setInterval(fetchData, 30000); // Poll every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const displayData = useMemo(() => {
+    const claimData = ledgerData.length > 0 ? ledgerData : generateClaimData().slice(0, 20);
+    const repeatedData = [];
+    for (let i = 0; i < dataMultiplier; i++) {
+      repeatedData.push(...claimData);
+    }
+    return repeatedData;
+  }, [ledgerData, dataMultiplier]);
 
   const handleClaimSOL = async () => {
     if (!publicKey || !sendTransaction) {
@@ -163,7 +196,7 @@ const Claim = () => {
             <Card className="bg-card/90 border-0">
               <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8 text-center">
                 <h3 className="text-lg text-muted-foreground mb-2">Total Claimed</h3>
-                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">$2.3M</p>
+                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">{stats.recovered}</p>
                 <p className="text-xs sm:text-sm text-muted-foreground">USD equivalent</p>
                 <p className="text-xs text-muted-foreground">updated live</p>
               </CardContent>
@@ -172,7 +205,7 @@ const Claim = () => {
             <Card className="bg-card/90 border-0">
               <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8 text-center">
                 <h3 className="text-lg text-muted-foreground mb-2">Claimants</h3>
-                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">56,7K</p>
+                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">{stats.claimants}</p>
                 <p className="text-xs sm:text-sm text-muted-foreground">global community</p>
               </CardContent>
             </Card>
@@ -191,16 +224,43 @@ const Claim = () => {
                 <Table>
                   <TableHeader>
                     <TableRow className="border-border/50">
-                      <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Wallet Address</TableHead>
+                      <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Wallet/TX</TableHead>
                       <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Accts</TableHead>
                       <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Claimed</TableHead>
                       <TableHead className="text-foreground font-semibold text-xs sm:text-sm">Date</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {displayData.map((row, index) => (
+                    {displayData.map((row: any, index) => (
                       <TableRow key={index} className="border-border/30">
-                        <TableCell className="font-mono text-xs sm:text-sm whitespace-nowrap">{row.wallet}</TableCell>
+                        <TableCell className="font-mono text-xs sm:text-sm whitespace-nowrap">
+                          {row.tx ? (
+                            <div className="flex flex-col">
+                              <span>{row.wallet}</span>
+                              <a 
+                                href={row.walletLink} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-primary hover:underline text-[10px] sm:text-xs"
+                              >
+                                {row.tx}
+                              </a>
+                            </div>
+                          ) : (
+                            row.walletLink ? (
+                              <a 
+                                href={row.walletLink} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-primary hover:underline"
+                              >
+                                {row.wallet}
+                              </a>
+                            ) : (
+                              row.wallet
+                            )
+                          )}
+                        </TableCell>
                         <TableCell className="text-xs sm:text-sm">{row.accts}</TableCell>
                         <TableCell className="text-xs sm:text-sm">{row.claimed}</TableCell>
                         <TableCell className="text-xs sm:text-sm whitespace-nowrap">{row.date}</TableCell>
@@ -212,13 +272,11 @@ const Claim = () => {
             </CardContent>
           </Card>
 
-          {!showAll && (
-            <div className="text-center mt-6">
-              <Button variant="link" className="text-primary" onClick={() => setShowAll(true)}>
-                Show more
-              </Button>
-            </div>
-          )}
+          <div className="text-center mt-6">
+            <Button variant="outline" className="text-primary border-primary hover:bg-primary/10" onClick={() => setDataMultiplier(prev => prev + 1)}>
+              Load more
+            </Button>
+          </div>
 
           <p className="text-center text-sm text-muted-foreground mt-8">
             Eligible users may claim free SOL. Network fees are minimal and claiming is recorded on-chain.
