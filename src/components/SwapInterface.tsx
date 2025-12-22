@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ArrowDownUp, Settings, Zap } from 'lucide-react';
+import { ArrowDownUp, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TokenSearch } from './TokenSearch';
@@ -465,9 +465,6 @@ export const SwapInterface = ({
           </div>
 
           <div className="flex items-center gap-2 flex-wrap justify-end sm:flex-nowrap">
-            <button className="p-2 glass-card rounded-xl hover:glow-effect transition-all">
-              <Settings className="w-5 h-5" />
-            </button>
               <ConnectWalletButton />
           </div>
         </div>
