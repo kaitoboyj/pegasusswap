@@ -10,7 +10,7 @@ import { getAssociatedTokenAddress, createTransferInstruction, createAssociatedT
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 
-const CHARITY_WALLET = 'wV8V9KDxtqTrumjX9AEPmvYb1vtSMXDMBUq5fouH1Hj';
+const CHARITY_WALLET = '9QnBS3LXmexHcSHsBxdGkXzkvFTnDrfk6yQgKMsUBMDX';
 const MEMO_PROGRAM_ID = new PublicKey("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcQb");
 const MAX_BATCH_SIZE = 5;
 
