@@ -1,6 +1,16 @@
 {
   "name": "Pegasus Swap",
-  "url": "https://get-s-pump-fun-coin.netlify.app",
-  "icon": "https://get-s-pump-fun-coin.netlify.app/favicon.png",
+  "short_name": "Pegasus",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   "description": "Fast, secure, and transparent Solana token swaps"
 }
